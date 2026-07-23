@@ -100,37 +100,57 @@
       margin-top: 1rem;
       display: none;
     }
+
+    /* Error View Container */
+    #notFoundView {
+      display: none;
+    }
+
+    .error-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
   </style>
 </head>
 <body>
 
   <div class="card">
-    <h2>Protected Access</h2>
-    <p class="subtitle">Enter password for ID: <strong id="displayId">default</strong></p>
+    <!-- FORM VIEW (Normal state) -->
+    <div id="formView">
+      <h2>Protected Access</h2>
+      <p class="subtitle">Enter code for this Checkpoint</p>
 
-    <form id="passwordForm">
-      <input 
-        type="password" 
-        id="passwordInput" 
-        placeholder="Enter password..." 
-        required 
-        autocomplete="off"
-      />
-      <div class="btn-group">
-        <button type="button" id="backBtn" class="btn-back">Back</button>
-        <button type="submit" id="submitBtn" class="btn-submit">Access</button>
-      </div>
-    </form>
+      <form id="passwordForm">
+        <input 
+          type="password" 
+          id="passwordInput" 
+          placeholder="Enter code..." 
+          required 
+          autocomplete="off"
+        />
+        <div class="btn-group">
+          <button type="button" class="btn-back backBtn">Back</button>
+          <button type="submit" id="submitBtn" class="btn-submit">Submit</button>
+        </div>
+      </form>
 
-    <p id="errorMessage" class="error-msg">Invalid password for this ID.</p>
+      <p id="errorMessage" class="error-msg">Invalid code.</p>
+    </div>
+
+    <!-- NOT FOUND VIEW (Error state) -->
+    <div id="notFoundView">
+      <div class="error-icon">⚠️</div>
+      <h2>ID Not Found</h2>
+      <p class="subtitle">The requested page ID "<strong id="missingId">--</strong>" does not exist or has expired.</p>
+      <button type="button" class="btn-back backBtn" style="width: 100%;">Go Back</button>
+    </div>
   </div>
 
   <script>
     // --- MAP IDs TO PASSWORDS & TARGET URLs ---
     const pageData = {
-      "1": {
-        "pass1": "https://google.com",
-        "pass2": "https://wikipedia.org"
+      "202608chk1": {
+        "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=380046174"
       },
       "2": {
         "secret123": "https://github.com",
@@ -142,14 +162,19 @@
     };
 
     $(document).ready(function() {
-      // 1. Extract 'id' parameter from current URL
+      // 1. Extract 'id' parameter from URL
       const urlParams = new URLSearchParams(window.location.search);
-      const currentId = urlParams.get('id') || "1"; // Default to "1"
+      const currentId = urlParams.get('id');
 
-      // Update UI to show active ID
-      $("#displayId").text(currentId);
+      // 2. Validate if the ID exists in pageData
+      if (!currentId || !pageData.hasOwnProperty(currentId)) {
+        // Show error page view
+        $("#formView").hide();
+        $("#missingId").text(currentId || "None specified");
+        $("#notFoundView").show();
+      }
 
-      // 2. Handle form submission
+      // 3. Handle Form Submission
       $("#passwordForm").on("submit", function(e) {
         e.preventDefault();
 
@@ -165,14 +190,12 @@
         }
       });
 
-      // 3. Handle Back button click
-      $("#backBtn").on("click", function() {
-        // If there's previous history in this tab, go back
+      // 4. Handle Back button clicks (works for both normal view and error view)
+      $(".backBtn").on("click", function() {
         if (document.referrer && history.length > 1) {
           window.history.back();
         } else {
-          // Fallback location if opened directly in a new tab
-          window.location.href = "https://google.com"; // Adjust fallback as needed
+          window.location.href = "https://padlet.com/joshuatam/breakout-room/3n6K2Wz3Mkjx40A9-eWRpzxVGONYRv7Qr"; // Fallback URL
         }
       });
     });
