@@ -121,6 +121,7 @@ max-width: 760px;
 min-width: min(92vw, 520px);
 text-align: center;
 margin-inline: auto;
+margin-top: 7.5rem;
 }
 
 .checkpoint-card {
