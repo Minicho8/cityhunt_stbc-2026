@@ -17,6 +17,7 @@ let canvasWidth = 0;
 let canvasHeight = 0;
 let animationFrameId = 0;
 let startTime = performance.now();
+const missionBoardUrl = "https://padlet.com/joshuatam/breakout-room/3n6K2Wz3Mkjx40A9-eWRpzxVGONYRv7Qr";
 
 const resizeCanvas = () => {
     const devicePixelRatio = Math.min(window.devicePixelRatio || 1, 2);
@@ -185,6 +186,7 @@ const animate = (time) => {
 $(document).ready(function() {
     const landingIntro = document.getElementById("landingIntro");
     const card = $(".card");
+    const siteHeader = $(".site-header");
     const playLandingExit = () => {
         window.setTimeout(() => {
             landingIntro.classList.add("is-hidden");
@@ -193,6 +195,12 @@ $(document).ready(function() {
                 card.fadeIn(300);
             }, 500);
         }, 900);
+    };
+
+    const updateHeaderState = () => {
+        const isScrolled = window.scrollY > 12;
+        siteHeader.toggleClass("is-compact", isScrolled);
+        $("body").toggleClass("is-scrolled", isScrolled);
     };
 
     if (document.readyState === "complete") {
@@ -206,6 +214,8 @@ $(document).ready(function() {
     context = canvas.getContext("2d");
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
+    window.addEventListener("scroll", updateHeaderState, { passive: true });
+    updateHeaderState();
     animationFrameId = window.requestAnimationFrame(animate);
 
     $(".tab-btn").on("click", function() {
@@ -220,6 +230,10 @@ $(document).ready(function() {
         } else if (tabName === "rules") {
             $("#rulesPanel").addClass("is-active").removeAttr("hidden");
         }
+    });
+
+    $(".mission-enter-btn").on("click", function() {
+        window.location.href = missionBoardUrl;
     });
 
     // 1. Extract 'id' parameter from URL
@@ -252,6 +266,6 @@ $(document).ready(function() {
 
     // 4. Handle Back button clicks (works for both normal view and error view)
     $(".backBtn").on("click", function() {
-    window.location.href = "https://padlet.com/joshuatam/breakout-room/3n6K2Wz3Mkjx40A9-eWRpzxVGONYRv7Qr";
+    window.location.href = missionBoardUrl;
     });
 });

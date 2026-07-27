@@ -6,8 +6,8 @@
   <title>Protected Access</title>
   <!-- Load jQuery CDN -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script crossorigin src="/index.js"></script>
-  <link rel="stylesheet" crossorigin href="/style.css">
+  <script crossorigin src="index.js"></script>
+  <link rel="stylesheet" crossorigin href="style.css">
 </head>
 <body>
 
@@ -36,8 +36,8 @@
     </div>
     <div class="header-copy">
       <p class="header-kicker">CityHunt Checkpoint</p>
-      <h1>Protected Access</h1>
-      <p class="header-subtitle">Enter the code for this checkpoint to continue your mission.</p>
+      <h1>綠色任務點</h1>
+      <p class="header-subtitle">請按以下 Checkpoint 要求找到任務 Code</p>
     </div>
   </header>
 
@@ -64,9 +64,11 @@
     </div>
     <div id="notFoundView">
       <div class="error-icon">⚠️</div>
-      <h2>ID Not Found</h2>
-      <p class="subtitle">The requested page ID "<strong id="missingId">--</strong>" does not exist or has expired.</p>
-      <button type="button" class="btn-back backBtn" style="width: 100%;">Go Back</button>
+      <h2>找不到這個任務節點</h2>
+      <p class="subtitle">您所要找的任務可能不存在，或已經失效。</p>
+      <button type="button" class="btn-back backBtn" style="width: 100%;">Go Back To Mission Board
+        回到任務墻
+      </button>
     </div>
   </div>
 </body>

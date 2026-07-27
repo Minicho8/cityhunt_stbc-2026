@@ -6,8 +6,8 @@
   <title>Protected Access</title>
   <!-- Load jQuery CDN -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="/index.js"></script>
-  <link rel="stylesheet" href="/style.css">
+  <script src="index.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -26,6 +26,7 @@
   <header class="site-header">
     <div class="brand-logo-wrap" id="brandLogoWrap">
       <img
+        style="max-width: 50%; height: auto;"
         class="brand-logo"
         src="FUSE_logo_v6.png"
         alt="CityHunt FUSE logo"
@@ -33,14 +34,25 @@
       >
     </div>
   </header>
-  <div class="card">
+  <div class="card checkpoint-card">
     <div class="tab-bar" role="tablist" aria-label="CityHunt sections">
       <button type="button" class="tab-btn is-active" data-tab="mission" role="tab" aria-selected="true">Mission</button>
       <button type="button" class="tab-btn" data-tab="rules" role="tab" aria-selected="false">Rules</button>
     </div>
 
     <div class="tab-panel is-active" id="missionPanel" role="tabpanel">
-      <div class="padlet-embed" style="border:1px solid rgba(0,0,0,0.1);border-radius:2px;box-sizing:border-box;overflow:hidden;position:relative;width:480px;height:352px;max-width:100%"><iframe src="https://padlet.com/padlets/1xd4e9p51skmsqua/embeds/preview_embed" style="width:100%;height:100%;display:block;padding:0;margin:0" frameborder="0"></iframe></div>
+      <div class="mission-card">
+        <p class="mission-label">Mission Board</p>
+        <h2>Enter the CityHunt board</h2>
+        <p class="mission-copy">Tap below to open the mission board and continue your challenge.</p>
+        <button type="button" class="mission-enter-btn">Enter Mission Board</button>
+      </div>
+      <div class="emergency-card" role="note" aria-label="Emergency contact information">
+        <p class="emergency-label">Emergency Contact</p>
+        <h2>Need help during the game?</h2>
+        <p class="emergency-copy">Contact 張芷琳姊妹 if there is an urgent issue or you need assistance.</p>
+        <p class="emergency-detail">內線 258</p>
+      </div>
     </div>
 
     <div class="tab-panel" id="rulesPanel" role="tabpanel" hidden>
@@ -48,6 +60,23 @@
         <h2>CityHunt Rules</h2>
         <ul>
           <li>Follow each clue in order and stay with your team.</li>
+          <li>Use only the hints provided inside the game and the checkpoint pages.</li>
+          <li>Do not share answers with other teams.</li>
+          <li>Respect the venue, the hosts, and the time limit.</li>
+          <li>When in doubt, ask the game leader before moving ahead.</li>
+          <li>Follow each clue in order and stay with your team.</li>
+          <li>Use only the hints provided inside the game and the checkpoint pages.</li>
+          <li>Do not share answers with other teams.</li>
+          <li>Respect the venue, the hosts, and the time limit.</li>
+          <li>When in doubt, ask the game leader before moving ahead.</li><li>Follow each clue in order and stay with your team.</li>
+          <li>Use only the hints provided inside the game and the checkpoint pages.</li>
+          <li>Do not share answers with other teams.</li>
+          <li>Respect the venue, the hosts, and the time limit.</li>
+          <li>When in doubt, ask the game leader before moving ahead.</li><li>Follow each clue in order and stay with your team.</li>
+          <li>Use only the hints provided inside the game and the checkpoint pages.</li>
+          <li>Do not share answers with other teams.</li>
+          <li>Respect the venue, the hosts, and the time limit.</li>
+          <li>When in doubt, ask the game leader before moving ahead.</li><li>Follow each clue in order and stay with your team.</li>
           <li>Use only the hints provided inside the game and the checkpoint pages.</li>
           <li>Do not share answers with other teams.</li>
           <li>Respect the venue, the hosts, and the time limit.</li>
