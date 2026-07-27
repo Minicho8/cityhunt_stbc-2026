@@ -6,200 +6,55 @@
   <title>Protected Access</title>
   <!-- Load jQuery CDN -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    }
-
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #f4f4f7;
-      color: #333;
-    }
-
-    .card {
-      background: #ffffff;
-      padding: 2.5rem;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-      width: 100%;
-      max-width: 380px;
-      text-align: center;
-    }
-
-    h2 {
-      margin-bottom: 0.5rem;
-      font-size: 1.5rem;
-    }
-
-    .subtitle {
-      color: #666;
-      font-size: 0.9rem;
-      margin-bottom: 1.5rem;
-    }
-
-    input[type="password"] {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 1rem;
-      margin-bottom: 1rem;
-      outline: none;
-      transition: border-color 0.20s;
-    }
-
-    input[type="password"]:focus {
-      border-color: #0066ff;
-    }
-
-    /* Button Group for Submit + Back */
-    .btn-group {
-      display: flex;
-      gap: 0.75rem;
-    }
-
-    button {
-      flex: 1;
-      padding: 0.75rem;
-      border: none;
-      border-radius: 6px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background-color 0.20s, border-color 0.20s;
-    }
-
-    .btn-submit {
-      background-color: #0066ff;
-      color: white;
-    }
-
-    .btn-submit:hover {
-      background-color: #0052cc;
-    }
-
-    .btn-back {
-      background-color: #e4e6eb;
-      color: #4b4f56;
-    }
-
-    .btn-back:hover {
-      background-color: #d8dadf;
-    }
-
-    .error-msg {
-      color: #e53e3e;
-      font-size: 0.85rem;
-      margin-top: 1rem;
-      display: none;
-    }
-
-    /* Error View Container */
-    #notFoundView {
-      display: none;
-    }
-
-    .error-icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-  </style>
+  <script src="/index.js"></script>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
-  <div class="card">
-    <!-- FORM VIEW (Normal state) -->
-    <div id="formView">
-      <h2>Protected Access</h2>
-      <p class="subtitle">Enter code for this Checkpoint</p>
-
-      <form id="passwordForm">
-        <input 
-          type="password" 
-          id="passwordInput" 
-          placeholder="Enter code..." 
-          required 
-          autocomplete="off"
-        />
-        <div class="btn-group">
-          <button type="button" class="btn-back backBtn">Back</button>
-          <button type="submit" id="submitBtn" class="btn-submit">Submit</button>
-        </div>
-      </form>
-
-      <p id="errorMessage" class="error-msg">Invalid code.</p>
-    </div>
-
-    <!-- NOT FOUND VIEW (Error state) -->
-    <div id="notFoundView">
-      <div class="error-icon">⚠️</div>
-      <h2>ID Not Found</h2>
-      <p class="subtitle">The requested page ID "<strong id="missingId">--</strong>" does not exist or has expired.</p>
-      <button type="button" class="btn-back backBtn" style="width: 100%;">Go Back</button>
+  <div id="landingIntro" aria-hidden="true">
+    <div class="landing-badge">CityHunt</div>
+    <h1 class="landing-title">Welcome Back</h1>
+    <p class="landing-subtitle">Your mission is loading</p>
+    <div class="landing-loader" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
   </div>
 
-  <script>
-    // --- MAP IDs TO PASSWORDS & TARGET URLs ---
-    const pageData = {
-      "202608chk1": {
-        "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=380046174"
-      },
-      "2": {
-        "secret123": "https://github.com",
-        "admin": "https://stackoverflow.com"
-      },
-      "clientA": {
-        "clientpass": "https://example.com/client-a-dashboard"
-      }
-    };
+  <canvas id="bgCanvas" aria-hidden="true"></canvas>
+  <header class="site-header">
+    <div class="brand-logo-wrap" id="brandLogoWrap">
+      <img
+        class="brand-logo"
+        src="FUSE_logo_v6.png"
+        alt="CityHunt FUSE logo"
+        onerror="document.getElementById('brandLogoWrap').style.display='none'"
+      >
+    </div>
+  </header>
+  <div class="card">
+    <div class="tab-bar" role="tablist" aria-label="CityHunt sections">
+      <button type="button" class="tab-btn is-active" data-tab="mission" role="tab" aria-selected="true">Mission</button>
+      <button type="button" class="tab-btn" data-tab="rules" role="tab" aria-selected="false">Rules</button>
+    </div>
 
-    $(document).ready(function() {
-      // 1. Extract 'id' parameter from URL
-      const urlParams = new URLSearchParams(window.location.search);
-      const currentId = urlParams.get('id');
+    <div class="tab-panel is-active" id="missionPanel" role="tabpanel">
+      <div class="padlet-embed" style="border:1px solid rgba(0,0,0,0.1);border-radius:2px;box-sizing:border-box;overflow:hidden;position:relative;width:480px;height:352px;max-width:100%"><iframe src="https://padlet.com/padlets/1xd4e9p51skmsqua/embeds/preview_embed" style="width:100%;height:100%;display:block;padding:0;margin:0" frameborder="0"></iframe></div>
+    </div>
 
-      // 2. Validate if the ID exists in pageData
-      if (!currentId || !pageData.hasOwnProperty(currentId)) {
-        // Show error page view
-        $("#formView").hide();
-        $("#missingId").text(currentId || "None specified");
-        $("#notFoundView").show();
-      }
-
-      // 3. Handle Form Submission
-      $("#passwordForm").on("submit", function(e) {
-        e.preventDefault();
-
-        const enteredPassword = $("#passwordInput").val().trim();
-
-        if (pageData[currentId] && pageData[currentId][enteredPassword]) {
-          $("#errorMessage").hide();
-          const targetUrl = pageData[currentId][enteredPassword];
-          window.location.href = targetUrl;
-        } else {
-          $("#errorMessage").fadeIn();
-          $("#passwordInput").val("").focus();
-        }
-      });
-
-      // 4. Handle Back button clicks (works for both normal view and error view)
-      $(".backBtn").on("click", function() {
-        if (document.referrer && history.length > 1) {
-          window.history.back();
-        } else {
-          window.location.href = "https://padlet.com/joshuatam/breakout-room/3n6K2Wz3Mkjx40A9-eWRpzxVGONYRv7Qr"; // Fallback URL
-        }
-      });
-    });
-  </script>
-
+    <div class="tab-panel" id="rulesPanel" role="tabpanel" hidden>
+      <div class="rules-card">
+        <h2>CityHunt Rules</h2>
+        <ul>
+          <li>Follow each clue in order and stay with your team.</li>
+          <li>Use only the hints provided inside the game and the checkpoint pages.</li>
+          <li>Do not share answers with other teams.</li>
+          <li>Respect the venue, the hosts, and the time limit.</li>
+          <li>When in doubt, ask the game leader before moving ahead.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

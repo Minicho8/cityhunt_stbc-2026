@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Rope Design</title>
+    <style>
+        body { margin: 0; background: #f3f3f3; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        canvas { background: #ffffff; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-radius: 8px; }
+    </style>
+</head>
+<body>
+
+<canvas id="ropeCanvas" width="600" height="400"></canvas>
+
+<script>
+const canvas = document.getElementById('ropeCanvas');
+const ctx = canvas.getContext('2d');
+
+/**
+ * Draws a realistic twisted rope between two points
+ */
+function drawRope(startX, startY, endX, endY, thickness, color1, color2) {
+    // Calculate distance and vector angle
+    const dx = endX - startX;
+    const dy = endY - startY;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    const angle = Math.atan2(dy, dx);
+
+    ctx.save();
+    // Move origin to start point and rotate to match rope direction
+    ctx.translate(startX, startY);
+    ctx.rotate(angle);
+
+    // Determine sizing of individual thread segments
+    const segmentLength = thickness * 0.7; 
+    const totalSegments = distance / segmentLength;
+
+    for (let i = 0; i < totalSegments; i++) {
+        const x = i * segmentLength;
+        const y = 0;
+
+        // Alternate strand colors to create depth
+        ctx.fillStyle = (i % 2 === 0) ? color1 : color2;
+
+        ctx.beginPath();
+        // Draw an angled ellipse to simulate a twisted rope thread
+        ctx.ellipse(x, y, segmentLength * 0.9, thickness / 2, Math.PI / 3.5, 0, 2 * Math.PI);
+        ctx.fill();
+        
+        // Subtle outline for individual strand separation
+        ctx.strokeStyle = 'rgba(0, 0, 0, 0.12)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+    }
+
+    ctx.restore();
+}
+
+// 1. Traditional Hemp Rope
+drawRope(50, 100, 550, 100, 30, '#d2b48c', '#b38b6d'); 
+
+// 2. Modern Blue Nylon Marine Rope
+drawRope(50, 200, 550, 200, 20, '#4682b4', '#1f4e79'); 
+
+// 3. Red Decorative Silk Cord
+drawRope(50, 300, 550, 300, 14, '#e60000', '#990000');
+
+</script>
+</body>
+</html>

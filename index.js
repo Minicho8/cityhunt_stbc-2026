@@ -1,0 +1,257 @@
+// --- MAP IDs TO PASSWORDS & TARGET URLs ---
+const pageData = {
+    "202608chk1": {
+    "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=380046174"
+    },
+    "202608chk2": {
+    "secret123": "",
+    },
+    "202608chk3": {
+    "clientpass": "https://example.com/client-a-dashboard"
+    }
+};
+
+let canvas;
+let context;
+let canvasWidth = 0;
+let canvasHeight = 0;
+let animationFrameId = 0;
+let startTime = performance.now();
+
+const resizeCanvas = () => {
+    const devicePixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+    canvasWidth = window.innerWidth;
+    canvasHeight = window.innerHeight;
+    canvas.width = Math.floor(canvasWidth * devicePixelRatio);
+    canvas.height = Math.floor(canvasHeight * devicePixelRatio);
+    canvas.style.width = `${canvasWidth}px`;
+    canvas.style.height = `${canvasHeight}px`;
+    context.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+};
+
+const drawCloud = (x, y, scale, alpha, time) => {
+    const sway = Math.sin(time * 0.00035 + x * 0.01) * 10;
+    context.save();
+    context.translate(x + sway, y);
+    context.scale(scale, scale);
+    context.globalAlpha = alpha;
+    context.fillStyle = "rgba(255, 255, 255, 0.9)";
+    context.beginPath();
+    context.ellipse(0, 0, 60, 24, 0, 0, Math.PI * 2);
+    context.ellipse(36, -10, 38, 18, 0, 0, Math.PI * 2);
+    context.ellipse(-32, -8, 34, 16, 0, 0, Math.PI * 2);
+    context.ellipse(15, -18, 28, 16, 0, 0, Math.PI * 2);
+    context.fill();
+    context.restore();
+};
+
+const drawRope = (startX, startY, endX, endY, color, thickness, waveAmount, waveSpeed, time) => {
+    const segments = 64;
+    context.strokeStyle = color;
+    context.lineCap = "round";
+    context.lineJoin = "round";
+    context.lineWidth = thickness;
+    context.beginPath();
+    for (let index = 0; index <= segments; index += 1) {
+        const progress = index / segments;
+        const x = startX + (endX - startX) * progress;
+        const y = startY + (endY - startY) * progress;
+        const wave = Math.sin(progress * Math.PI * 6 + time * waveSpeed) * waveAmount;
+        const pull = Math.sin(progress * Math.PI) * waveAmount * 0.25;
+        const offsetY = y + wave + pull;
+        if (index === 0) {
+            context.moveTo(x, offsetY);
+        } else {
+            context.lineTo(x, offsetY);
+        }
+    }
+    context.stroke();
+};
+
+const drawKnot = (x, y, time) => {
+    const pulse = 1 + Math.sin(time * 0.002) * 0.03;
+    context.save();
+    context.translate(x, y);
+    context.scale(pulse, pulse);
+
+    context.shadowColor = "rgba(0, 0, 0, 0.18)";
+    context.shadowBlur = 12;
+    context.shadowOffsetY = 6;
+
+    context.fillStyle = "#d8a53d";
+    context.beginPath();
+    context.arc(0, 0, 26, 0, Math.PI * 2);
+    context.fill();
+
+    context.shadowBlur = 0;
+    context.strokeStyle = "rgba(98, 63, 11, 0.45)";
+    context.lineWidth = 5;
+    context.beginPath();
+    context.arc(-8, -4, 12, 0.2, Math.PI * 1.3);
+    context.arc(8, 4, 12, Math.PI * 1.2, Math.PI * 2.2);
+    context.stroke();
+
+    context.restore();
+};
+
+const drawMountains = () => {
+    const baseY = canvasHeight * 0.76;
+    context.fillStyle = "#96b5c9";
+    context.beginPath();
+    context.moveTo(0, baseY);
+    context.lineTo(canvasWidth * 0.14, canvasHeight * 0.56);
+    context.lineTo(canvasWidth * 0.28, baseY * 0.93);
+    context.lineTo(canvasWidth * 0.43, canvasHeight * 0.50);
+    context.lineTo(canvasWidth * 0.59, baseY * 0.92);
+    context.lineTo(canvasWidth * 0.76, canvasHeight * 0.52);
+    context.lineTo(canvasWidth, baseY * 0.95);
+    context.lineTo(canvasWidth, canvasHeight);
+    context.lineTo(0, canvasHeight);
+    context.closePath();
+    context.fill();
+
+    context.fillStyle = "rgba(255, 255, 255, 0.3)";
+    context.beginPath();
+    context.moveTo(canvasWidth * 0.1, canvasHeight * 0.6);
+    context.lineTo(canvasWidth * 0.17, canvasHeight * 0.52);
+    context.lineTo(canvasWidth * 0.24, canvasHeight * 0.62);
+    context.closePath();
+    context.fill();
+};
+
+const drawGrass = () => {
+    const groundY = canvasHeight * 0.79;
+    const gradient = context.createLinearGradient(0, groundY, 0, canvasHeight);
+    gradient.addColorStop(0, "rgba(152, 182, 89, 0.3)");
+    gradient.addColorStop(1, "rgba(109, 145, 61, 0.72)");
+    context.fillStyle = gradient;
+    context.fillRect(0, groundY, canvasWidth, canvasHeight - groundY);
+};
+
+const drawScene = (time) => {
+    context.clearRect(0, 0, canvasWidth, canvasHeight);
+
+    const sky = context.createLinearGradient(0, 0, 0, canvasHeight);
+    sky.addColorStop(0, "#9ad8ff");
+    sky.addColorStop(0.6, "#dff3ff");
+    sky.addColorStop(1, "#d6eec6");
+    context.fillStyle = sky;
+    context.fillRect(0, 0, canvasWidth, canvasHeight);
+
+    context.fillStyle = "rgba(255, 255, 255, 0.2)";
+    context.beginPath();
+    context.ellipse(canvasWidth * 0.18, canvasHeight * 0.16, 170, 60, -0.06, 0, Math.PI * 2);
+    context.ellipse(canvasWidth * 0.6, canvasHeight * 0.11, 230, 70, 0.12, 0, Math.PI * 2);
+    context.fill();
+
+    drawCloud(canvasWidth * 0.15, canvasHeight * 0.18, 1.15, 0.55, time);
+    drawCloud(canvasWidth * 0.42, canvasHeight * 0.1, 1.5, 0.62, time);
+    drawCloud(canvasWidth * 0.8, canvasHeight * 0.17, 1.05, 0.5, time);
+
+    drawMountains();
+    drawGrass();
+
+    drawRope(-canvasWidth * 0.05, canvasHeight * 0.2, canvasWidth * 0.45, canvasHeight * 0.57, "#a54b43", 46, 10, 0.0016, time);
+    drawRope(canvasWidth * 0.1, canvasHeight * 0.85, canvasWidth * 0.82, canvasHeight * 0.46, "#c3a675", 44, 8, 0.0014, time);
+    drawRope(canvasWidth * 0.52, canvasHeight * 0.63, canvasWidth * 1.08, canvasHeight * 0.83, "#4d7ca8", 42, 7, 0.0018, time);
+    drawRope(canvasWidth * 0.38, canvasHeight * 0.72, canvasWidth * 1.02, canvasHeight * 0.44, "#88a27f", 40, 8, 0.0015, time);
+
+    drawKnot(canvasWidth * 0.84, canvasHeight * 0.72, time);
+    drawKnot(canvasWidth * 0.93, canvasHeight * 0.59, time + 700);
+
+    context.fillStyle = "rgba(78, 139, 73, 0.65)";
+    for (let index = 0; index < 18; index += 1) {
+        const x = canvasWidth * 0.5 + Math.sin(time * 0.0007 + index) * 120 + index * 6;
+        const y = canvasHeight * 0.63 + Math.cos(time * 0.001 + index) * 26;
+        context.beginPath();
+        context.arc(x, y, 2 + (index % 3), 0, Math.PI * 2);
+        context.fill();
+    }
+
+    const shimmerCount = 10;
+    for (let index = 0; index < shimmerCount; index += 1) {
+        const shimmerX = (canvasWidth / shimmerCount) * index + Math.sin(time * 0.0015 + index) * 18;
+        const shimmerY = canvasHeight * 0.52 + Math.cos(time * 0.0012 + index) * 10;
+        context.fillStyle = `rgba(255, 255, 255, ${0.12 + (index % 3) * 0.03})`;
+        context.fillRect(shimmerX, shimmerY, 32, 2);
+    }
+};
+
+const animate = (time) => {
+    drawScene(time - startTime);
+    animationFrameId = window.requestAnimationFrame(animate);
+};
+
+$(document).ready(function() {
+    const landingIntro = document.getElementById("landingIntro");
+    const card = $(".card");
+    const playLandingExit = () => {
+        window.setTimeout(() => {
+            landingIntro.classList.add("is-hidden");
+            window.setTimeout(() => {
+                landingIntro.remove();
+                card.fadeIn(300);
+            }, 500);
+        }, 900);
+    };
+
+    if (document.readyState === "complete") {
+        playLandingExit();
+
+    } else {
+        window.addEventListener("load", playLandingExit, { once: true });
+    }
+
+    canvas = document.getElementById("bgCanvas");
+    context = canvas.getContext("2d");
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+    animationFrameId = window.requestAnimationFrame(animate);
+
+    $(".tab-btn").on("click", function() {
+        const tabName = $(this).data("tab");
+
+        $(".tab-btn").removeClass("is-active").attr("aria-selected", "false");
+        $(this).addClass("is-active").attr("aria-selected", "true");
+
+        $(".tab-panel").removeClass("is-active").attr("hidden", true);
+        if (tabName === "mission") {
+            $("#missionPanel").addClass("is-active").removeAttr("hidden");
+        } else if (tabName === "rules") {
+            $("#rulesPanel").addClass("is-active").removeAttr("hidden");
+        }
+    });
+
+    // 1. Extract 'id' parameter from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentId = urlParams.get('id');
+
+    // 2. Validate if the ID exists in pageData
+    if (!currentId || !pageData.hasOwnProperty(currentId)) {
+    // Show error page view
+    $("#formView").hide();
+    $("#missingId").text(currentId || "None specified");
+    $("#notFoundView").show();
+    }
+
+    // 3. Handle Form Submission
+    $("#passwordForm").on("submit", function(e) {
+    e.preventDefault();
+
+    const enteredPassword = $("#passwordInput").val().trim();
+
+    if (pageData[currentId] && pageData[currentId][enteredPassword]) {
+        $("#errorMessage").hide();
+        const targetUrl = pageData[currentId][enteredPassword];
+        window.location.href = targetUrl;
+    } else {
+        $("#errorMessage").fadeIn();
+        $("#passwordInput").val("").focus();
+    }
+    });
+
+    // 4. Handle Back button clicks (works for both normal view and error view)
+    $(".backBtn").on("click", function() {
+    window.location.href = "https://padlet.com/joshuatam/breakout-room/3n6K2Wz3Mkjx40A9-eWRpzxVGONYRv7Qr";
+    });
+});

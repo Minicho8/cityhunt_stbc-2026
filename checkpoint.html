@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Protected Access</title>
+  <!-- Load jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script crossorigin src="/index.js"></script>
+  <link rel="stylesheet" crossorigin href="/style.css">
+</head>
+<body>
+
+
+    <div id="landingIntro" aria-hidden="true">
+        <div class="landing-badge">CityHunt</div>
+        <h1 class="landing-title">Checkpoint</h1>
+        <p class="landing-subtitle">Your mission is loading</p>
+        <div class="landing-loader" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+  <canvas id="bgCanvas" aria-hidden="true"></canvas>
+
+  <header class="site-header">
+    <div class="brand-logo-wrap" id="brandLogoWrap">
+      <img
+        style="max-width: 50%; height: auto;"
+        class="brand-logo"
+        src="FUSE_logo_v6.png"
+        alt="CityHunt FUSE logo"
+        onerror="document.getElementById('brandLogoWrap').style.display='none'"
+      >
+    </div>
+    <div class="header-copy">
+      <p class="header-kicker">CityHunt Checkpoint</p>
+      <h1>Protected Access</h1>
+      <p class="header-subtitle">Enter the code for this checkpoint to continue your mission.</p>
+    </div>
+  </header>
+
+  <div class="card checkpoint-card">
+    <!-- FORM VIEW (Normal state) -->
+    <div id="formView">
+      <p class="subtitle">Enter code for this Checkpoint</p>
+
+      <form id="passwordForm">
+        <input 
+          type="password" 
+          id="passwordInput" 
+          placeholder="Enter code..." 
+          required 
+          autocomplete="off"
+        />
+        <div class="btn-group">
+          <button type="button" class="btn-back backBtn">Back</button>
+          <button type="submit" id="submitBtn" class="btn-submit">Submit</button>
+        </div>
+      </form>
+
+      <p id="errorMessage" class="error-msg">Invalid code.</p>
+    </div>
+    <div id="notFoundView">
+      <div class="error-icon">⚠️</div>
+      <h2>ID Not Found</h2>
+      <p class="subtitle">The requested page ID "<strong id="missingId">--</strong>" does not exist or has expired.</p>
+      <button type="button" class="btn-back backBtn" style="width: 100%;">Go Back</button>
+    </div>
+  </div>
+</body>
+</html>
