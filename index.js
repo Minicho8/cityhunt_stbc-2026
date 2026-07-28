@@ -258,9 +258,9 @@ $(document).ready(function() {
 
     const enteredPassword = $("#passwordInput").val().trim();
     
-    if (pageData[currentId] && pageData[currentId][enteredPassword][url]) {
+    if (pageData[currentId] && pageData[currentId][enteredPassword].url) {
         $("#errorMessage").hide();
-        const targetUrl = pageData[currentId][enteredPassword];
+        const targetUrl = pageData[currentId][enteredPassword].url;
         window.location.href = targetUrl;
     } else {
         $("#errorMessage").fadeIn();
