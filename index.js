@@ -1,7 +1,11 @@
 // --- MAP IDs TO PASSWORDS & TARGET URLs ---
 const pageData = {
     "202608chk1": {
-    "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=380046174"
+    "26432866": {
+        url: "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=380046174",
+    },
+    img: "../img/img1.jpeg",
+    context: "a test on the context"
     },
     "202608chk2": {
     "secret123": "",
@@ -244,17 +248,17 @@ $(document).ready(function() {
     if (!currentId || !pageData.hasOwnProperty(currentId)) {
     // Show error page view
     $("#formView").hide();
-    $("#missingId").text(currentId || "None specified");
     $("#notFoundView").show();
     }
-
+    $("#imgId").attr('src', pageData[currentId].img);
+    $("#contextId").text(pageData[currentId].context);
     // 3. Handle Form Submission
     $("#passwordForm").on("submit", function(e) {
     e.preventDefault();
 
     const enteredPassword = $("#passwordInput").val().trim();
-
-    if (pageData[currentId] && pageData[currentId][enteredPassword]) {
+    
+    if (pageData[currentId] && pageData[currentId][enteredPassword][url]) {
         $("#errorMessage").hide();
         const targetUrl = pageData[currentId][enteredPassword];
         window.location.href = targetUrl;

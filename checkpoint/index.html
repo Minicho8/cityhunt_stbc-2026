@@ -4,11 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Checkpoint</title>
-  <base href="https://minicho8.github.io/cityhunt_stbc-2026/">
   <!-- Load jQuery CDN -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script crossorigin src="index.js"></script>
-  <link rel="stylesheet" crossorigin href="style.css">
+  <script crossorigin src="../index.js"></script>
+  <link rel="stylesheet" crossorigin href="../style.css">
 </head>
 <body>
 
@@ -30,7 +29,7 @@
       <img
         style="max-width: 50%; height: auto;"
         class="brand-logo"
-        src="FUSE_logo_v6.png"
+        src="../FUSE_logo_v6.png"
         alt="CityHunt FUSE logo"
         onerror="document.getElementById('brandLogoWrap').style.display='none'"
       >
@@ -45,8 +44,8 @@
   <div class="card checkpoint-card">
     <!-- FORM VIEW (Normal state) -->
     <div id="formView">
-      <p class="subtitle">Enter code for this Checkpoint</p>
-
+      <img id="imgId">
+      <p id="contextId" class="subtitle"></p>
       <form id="passwordForm">
         <input 
           type="password" 
@@ -67,7 +66,7 @@
     <div id="notFoundView">
       <div class="error-icon">⚠️</div>
       <h2>找不到這個任務節點</h2>
-      <p class="subtitle">您所要找的任務可能不存在，或已經失效。</p>
+      <p class="subtitle">您所要找的任務可能不存在，或已經失效。<p id="missingId"></p></p>
       <button type="button" class="btn-back backBtn" style="width: 100%;">Go Back To Mission Board
         回到任務墻
       </button>

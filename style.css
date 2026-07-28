@@ -451,6 +451,9 @@ margin-top: 1rem;
 display: none;
 }
 
+#imgId {
+    width: 100%;
+}
 /* Error View Container */
 #notFoundView {
 display: none;
