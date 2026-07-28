@@ -116,16 +116,12 @@ background: #ffffff;
 padding: 1.25rem;
 border-radius: 12px;
 box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-width: 100%;
+width: min(100%, 720px);
 max-width: 760px;
 min-width: min(92vw, 520px);
 text-align: center;
 margin-inline: auto;
-margin-top: 7.5rem;
-}
-
-.checkpoint-card {
-width: min(100%, 720px);
+margin-top: 8.5rem;
 margin-bottom: 1rem;
 }
 
@@ -188,7 +184,7 @@ max-width: 46ch;
 transition: opacity 0.18s ease, max-height 0.18s ease, margin 0.18s ease, transform 0.18s ease;
 }
 
-.brand-logo-wrap {
+.brand-logo-wrap, .brand-logo-wrap a {
 display: flex;
 justify-content: center;
 margin: 0;
@@ -453,6 +449,7 @@ display: none;
 
 #imgId {
     width: 100%;
+    max-width: 350px;
 }
 /* Error View Container */
 #notFoundView {
@@ -515,10 +512,7 @@ align-items: center;
 text-align: center;
 }
 
-.checkpoint-card {
-width: 100%;
-margin-top: clamp(12rem, 28vw, 13.5rem);
-}
+
 
 .header-copy {
 text-align: center;
@@ -529,9 +523,15 @@ min-width: 0;
 max-width: 100%;
 padding: 0.9rem;
 border-radius: 18px;
+width: 100%;
+margin-top: clamp(12rem, 28vw, 13.5rem);
 }
 
-.brand-logo-wrap {
+.checkpoint-card {
+width: 100%;
+margin-top: clamp(18rem, 28vw, 13.5rem);
+}
+.brand-logo-wrap, .brand-logo-wrap a{
 margin-bottom: 0;
 }
 
@@ -598,18 +598,22 @@ padding: 0.9rem;
 }
 }
 @media (max-height: 500px) {
-.checkpoint-card {
+.card {
     margin-top: clamp(8.75rem, 16vh, 10rem);
+}
+.checkpoint-card {
+    margin-top: clamp(18rem, 16vh, 10rem);
 }
 }
 @media (max-width: 420px) {
 .card {
 padding: 0.75rem;
 border-radius: 16px;
+margin-top: 11rem;
 }
 
 .checkpoint-card {
-margin-top: 11rem;
+margin-top: 16rem;
 }
 
 .site-header {
