@@ -1,9 +1,7 @@
 // --- MAP IDs TO PASSWORDS & TARGET URLs ---
 const pageData = {
     "202608chk1": {
-    "26432866": {
-        url: "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=380046174",
-    },
+    "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=380046174",
     img: "../img/img1.jpeg",
     context: "a test on the context"
     },
@@ -258,9 +256,9 @@ $(document).ready(function() {
 
     const enteredPassword = $("#passwordInput").val().trim();
     
-    if (pageData[currentId] && pageData[currentId][enteredPassword].url) {
+    if (pageData[currentId] && pageData[currentId][enteredPassword]) {
         $("#errorMessage").hide();
-        const targetUrl = pageData[currentId][enteredPassword].url;
+        const targetUrl = pageData[currentId][enteredPassword];
         window.location.href = targetUrl;
     } else {
         $("#errorMessage").fadeIn();
