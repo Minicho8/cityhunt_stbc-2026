@@ -6,6 +6,26 @@ const pageData = {
     context: "a test on the context"
     },
     "202608chk2": {
+    "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=380046174",
+    img: "../img/img1.jpeg",
+    context: "a test on the context"
+    },
+    "202608chk5": {
+    "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=380046174",
+    img: "../img/img1.jpeg",
+    context: "a test on the context"
+    },
+    "202608chk5": {
+    "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=380046174",
+    img: "../img/img1.jpeg",
+    context: "a test on the context"
+    },
+    "202608chk5": {
+    "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=380046174",
+    img: "../img/checkpoint5.png",
+    context: "請找出此處的垃圾桶上的數字"
+    },
+    "202608chk2": {
     "secret123": "",
     },
     "202608chk3": {
