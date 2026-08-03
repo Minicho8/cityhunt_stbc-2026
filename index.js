@@ -242,8 +242,8 @@ $(document).ready(function() {
 
     // --- Live Countdown & Game Status Timer ---
     
-    const startTimeGame = new Date("2026-08-07T17:15:00").getTime();
-    const endTimeGame = new Date("2026-08-04T20:30:00").getTime();
+    const startTimeGame = new Date("2026-08-07T02:15:00").getTime();
+    const endTimeGame = new Date("2026-08-07T20:30:00").getTime();
 
 
     const statusCard  = $(".status-card");
@@ -268,7 +268,7 @@ $(document).ready(function() {
             targetTime = startTimeGame;
             currentStateTitle = "遊戲即將開始 (UPCOMING)";
             currentStateText = "請準備，任務即將解鎖！";
-            statusCard.addClass("state-pending");
+            statusCard.removeClass("state-pending state-live state-urgent state-return state-ended").addClass("state-pending");
 
             const diff = startTimeGame - now;
             updateDisplay(diff);
@@ -281,17 +281,17 @@ $(document).ready(function() {
                 // State 4: Final 15 Minutes Return (Warning Red/Orange Theme)
                 currentStateTitle = "請返回營地！ (RETURN SOON)";
                 currentStateText = "比賽即將結束，請立即回程！";
-                statusCard.addClass("state-return");
+                statusCard.removeClass("state-pending state-live state-urgent state-return state-ended").addClass("state-return");
             } else if (minutesLeft <= 30) {
                 // State 3: Final 30 Minutes Urgent (Amber Theme)
                 currentStateTitle = "最後衝刺階段！ (URGENT)";
                 currentStateText = "剩餘時間不多，加緊完成任務！";
-                statusCard.addClass("state-urgent");
+                statusCard.removeClass("state-pending state-live state-urgent state-return state-ended").addClass("state-urgent");
             } else {
                 // State 2: Live / In-Progress (Green Theme)
                 currentStateTitle = "遊戲進行中 (LIVE)";
                 currentStateText = "全力以赴，群體合一！";
-                statusCard.addClass("state-live");
+                statusCard.removeClass("state-pending state-live state-urgent state-return state-ended").addClass("state-live");
             }
             updateDisplay(timeLeft);
 
