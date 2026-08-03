@@ -78,6 +78,41 @@
         <p class="emergency-copy">Contact 張芷琳姊妹 if there is an urgent issue or you need assistance.</p>
         <p class="emergency-detail">內線 258</p>
       </div>
+      <!-- COMBINED: Emergency Contact & Utility / Help Desk -->
+      <div class="emergency-card" role="note" aria-label="Emergency contact and help desk information">
+        <div class="emergency-header-row">
+          <div>
+            <p class="emergency-label">Emergency & Help Desk</p>
+            <h2>Need help during the game?</h2>
+          </div>
+          <button type="button" id="utilityToggleBtn" class="utility-toggle-btn" aria-label="Open Quick Links and Help Desk">
+            <span class="utility-icon" aria-hidden="true">💬</span>
+            <span class="utility-label">快問快答</span>
+          </button>
+        </div>
+        
+        <p class="emergency-copy">Contact Heidi 同工 if there is an urgent issue or you need assistance.</p>
+        <div class="emergency-details-row">
+          <span class="emergency-detail">+852 96592752</span>
+          <a href="https://wa.me/85296592752" target="_blank" rel="noopener noreferrer" class="emergency-whatsapp-btn">
+            <span>📱 WhatsApp 即時求助</span>
+          </a>
+        </div>
+
+        <!-- Hidden or expandable Utility Drawer Content -->
+        <div id="utilityDrawer" class="utility-drawer" aria-hidden="true">
+          <div class="utility-drawer-header">
+            <h3>Quick Links</h3>
+            <button type="button" id="utilityCloseBtn" class="utility-close-btn" aria-label="Close Drawer">&times;</button>
+          </div>
+          <div class="utility-links-list">
+            <a href="https://padlet.com/joshuatam/breakout-room/3n6K2Wz3Mkjx40A9-eWRpzxVGONYRv7Qr" target="_blank" rel="noopener noreferrer" class="utility-link-item">
+              <span class="link-icon">📋</span>
+              <span>開啟任務板 (Mission Board)</span>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="tab-panel" id="rulesPanel" role="tabpanel" hidden>

@@ -324,6 +324,32 @@ $(document).ready(function() {
     updateGameCountdown();
     setInterval(updateGameCountdown, 1000);
 
+    // --- Emergency Card Utility Drawer Toggle ---
+    const $utilityToggleBtn = $("#utilityToggleBtn");
+    const $utilityDrawer = $("#utilityDrawer");
+    const $utilityCloseBtn = $("#utilityCloseBtn");
+
+    $utilityToggleBtn.on("click", function(e) {
+        e.stopPropagation();
+        const isOpen = $utilityDrawer.hasClass("is-open");
+        if (isOpen) {
+            $utilityDrawer.removeClass("is-open").attr("aria-hidden", "true");
+        } else {
+            $utilityDrawer.addClass("is-open").attr("aria-hidden", "false");
+        }
+    });
+
+    $utilityCloseBtn.on("click", function() {
+        $utilityDrawer.removeClass("is-open").attr("aria-hidden", "true");
+    });
+
+    // Close drawer when clicking outside the emergency card
+    $(document).on("click", function(e) {
+        if (!$(e.target).closest(".emergency-card").length) {
+            $utilityDrawer.removeClass("is-open").attr("aria-hidden", "true");
+        }
+    });
+
     $(".tab-btn").on("click", function() {
         const tabName = $(this).data("tab");
 

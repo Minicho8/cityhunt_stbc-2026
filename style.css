@@ -297,17 +297,26 @@ transform: translateY(-1px);
 background: linear-gradient(135deg, #13395d, #276f56);
 }
 
+/* --- Combined Emergency & Utility Card Styles --- */
 .emergency-card {
+    position: relative;
     max-width: 560px;
     margin: 0.85rem auto 0;
     padding: 1.05rem 1rem 1rem;
     display: grid;
-    gap: 0.6rem;
+    gap: 0.75rem;
     text-align: left;
     border-radius: 18px;
     background: linear-gradient(135deg, rgba(255, 245, 237, 0.98), rgba(255, 255, 255, 0.96));
     border: 1px solid rgba(226, 132, 64, 0.24);
     box-shadow: 0 12px 22px rgba(152, 93, 44, 0.12);
+}
+
+.emergency-header-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
 }
 
 .emergency-label {
@@ -329,6 +338,13 @@ background: linear-gradient(135deg, #13395d, #276f56);
     line-height: 1.5;
 }
 
+.emergency-details-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+}
+
 .emergency-detail {
     display: inline-flex;
     width: fit-content;
@@ -338,6 +354,106 @@ background: linear-gradient(135deg, #13395d, #276f56);
     color: #9d451b;
     font-weight: 700;
     letter-spacing: 0.06em;
+    font-size: 0.9rem;
+}
+
+.emergency-whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: 999px;
+    background: rgba(37, 211, 102, 0.15);
+    color: #075e54;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.emergency-whatsapp-btn:hover {
+    background: rgba(37, 211, 102, 0.25);
+}
+
+.utility-toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #16436e, #2d7d61);
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 12px rgba(18, 61, 96, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.utility-toggle-btn:hover {
+    transform: translateY(-1px);
+}
+
+.utility-drawer {
+    display: none;
+    flex-direction: column;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(45, 125, 97, 0.2);
+    margin-top: 0.5rem;
+    overflow: hidden;
+}
+
+.utility-drawer.is-open {
+    display: flex;
+}
+
+.utility-drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 0.9rem;
+    background: rgba(235, 248, 255, 0.98);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.utility-drawer-header h3 {
+    font-size: 0.9rem;
+    color: #17324d;
+    margin: 0;
+}
+
+.utility-close-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    color: #50657a;
+    cursor: pointer;
+}
+
+.utility-links-list {
+    padding: 0.75rem;
+    display: grid;
+    gap: 0.4rem;
+}
+
+.utility-link-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 0.75rem;
+    border-radius: 8px;
+    background: rgba(22, 67, 110, 0.04);
+    color: #17324d;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.utility-link-item:hover {
+    background: rgba(22, 67, 110, 0.09);
 }
 
 .site-header.is-compact .brand-logo {
