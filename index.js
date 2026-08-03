@@ -242,7 +242,7 @@ $(document).ready(function() {
 
     // --- Live Countdown & Game Status Timer ---
     
-    const startTimeGame = new Date("2026-08-07T02:15:00").getTime();
+    const startTimeGame = new Date("2026-08-07T17:15:00").getTime();
     const endTimeGame = new Date("2026-08-07T20:30:00").getTime();
 
 
