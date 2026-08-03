@@ -242,10 +242,17 @@ $(document).ready(function() {
 
     // --- Live Countdown & Game Status Timer ---
     
-    const startTimeGame = new Date(2026, 7, 3, 17, 15, 0).getTime();
-    const endTimeGame = new Date(2026, 7, 4, 0, 48, 0).getTime();
-    const thirtyMinutesMs = 30 * 60 * 1000; 
-    const fifteenMinutesMs = 15 * 60 * 1000; 
+    const startTimeGame = new Date("2026-08-07T17:15:00").getTime();
+    const endTimeGame = new Date("2026-08-04T20:30:00").getTime();
+
+
+    const statusCard  = $(".status-card");
+    const statusTitle = document.getElementById('statusTitle');
+    const statusMsg   = document.getElementById('statusMsg');
+
+    function pad(num) {
+        return String(num).padStart(2, '0');
+    }
 
     function updateGameCountdown() {
         const now = new Date().getTime();
@@ -253,37 +260,41 @@ $(document).ready(function() {
         const statusMsg = document.getElementById("statusMessage");
         const statusCard = $(".status-card");
         
-        let targetTime;
         let currentStateTitle = "";
         let currentStateText = "";
-        let targetClass = "";
 
         if (now < startTimeGame) {
             // State 1: Before Start (Red Theme)
             targetTime = startTimeGame;
-            currentStateTitle = 遊戲即將開始 (UPCOMING);
+            currentStateTitle = "遊戲即將開始 (UPCOMING)";
             currentStateText = "請準備，任務即將解鎖！";
-            targetClass = "state-pending";
-        } else if (now >= startTimeGame && now <= endTimeGame) {
-            targetTime = endTimeGame;
-            const timeLeft = endTimeGame - now;
+            statusCard.addClass("state-pending");
 
-            if (timeLeft <= fifteenMinutesMs) {
+            const diff = startTimeGame - now;
+            updateDisplay(diff);
+
+        } else if (now >= startTimeGame && now <= endTimeGame) {
+            const timeLeft = endTimeGame - now;
+            const minutesLeft = timeLeft / (1000 * 60);
+
+            if (minutesLeft <= 15) {
                 // State 4: Final 15 Minutes Return (Warning Red/Orange Theme)
                 currentStateTitle = "請返回營地！ (RETURN SOON)";
                 currentStateText = "比賽即將結束，請立即回程！";
-                targetClass = "state-return";
-            } else if (timeLeft <= thirtyMinutesMs) {
+                statusCard.addClass("state-return");
+            } else if (minutesLeft <= 30) {
                 // State 3: Final 30 Minutes Urgent (Amber Theme)
                 currentStateTitle = "最後衝刺階段！ (URGENT)";
                 currentStateText = "剩餘時間不多，加緊完成任務！";
-                targetClass = "state-urgent";
+                statusCard.addClass("state-urgent");
             } else {
                 // State 2: Live / In-Progress (Green Theme)
                 currentStateTitle = "遊戲進行中 (LIVE)";
                 currentStateText = "全力以赴，群體合一！";
-                targetClass = "state-live";
+                statusCard.addClass("state-live");
             }
+            updateDisplay(timeLeft);
+
         } else {
             // State 5: Game Ended (Muted Neutral Theme)
             $("#hours").text("00");
@@ -294,21 +305,22 @@ $(document).ready(function() {
             statusCard.removeClass("state-pending state-live state-urgent state-return").addClass("state-ended");
             return;
         }
-
-        statusCard.removeClass("state-pending state-live state-urgent state-return state-ended").addClass(targetClass);
-
-        const distance = targetTime - now;
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        $("#hours").text(String(hours).padStart(2, '0'));
-        $("#minutes").text(String(minutes).padStart(2, '0'));
-        $("#seconds").text(String(seconds).padStart(2, '0'));
+        
         if (statusTitle) statusTitle.innerText = currentStateTitle;
         if (statusMsg) statusMsg.innerText = currentStateText;
+        
     }
+    function updateDisplay(ms) {
+        const totalSecs = Math.floor(ms / 1000);
+        const hours = Math.floor(totalSecs / 3600);
+        const mins = Math.floor((totalSecs % 3600) / 60);
+        const secs = totalSecs % 60;
 
+        $("#hours").text(pad(hours));
+        $("#minutes").text(pad(mins));
+        $("#seconds").text(pad(secs));
+        
+    }
     updateGameCountdown();
     setInterval(updateGameCountdown, 1000);
 
