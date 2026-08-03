@@ -10,12 +10,12 @@ const pageData = {
     img: "../img/img1.jpeg",
     context: "a test on the context"
     },
-    "202608chk5": {
+    "202608chk3": {
     "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=380046174",
     img: "../img/img1.jpeg",
     context: "a test on the context"
     },
-    "202608chk5": {
+    "202608chk4": {
     "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=380046174",
     img: "../img/img1.jpeg",
     context: "a test on the context"
@@ -239,6 +239,78 @@ $(document).ready(function() {
     window.addEventListener("scroll", updateHeaderState, { passive: true });
     updateHeaderState();
     animationFrameId = window.requestAnimationFrame(animate);
+
+    // --- Live Countdown & Game Status Timer ---
+    
+    const startTimeGame = new Date(2026, 7, 3, 17, 15, 0).getTime();
+    const endTimeGame = new Date(2026, 7, 4, 0, 48, 0).getTime();
+    const thirtyMinutesMs = 30 * 60 * 1000; 
+    const fifteenMinutesMs = 15 * 60 * 1000; 
+
+    function updateGameCountdown() {
+        const now = new Date().getTime();
+        const statusTitle = document.getElementById("statusTitle");
+        const statusMsg = document.getElementById("statusMessage");
+        const statusCard = $(".status-card");
+        
+        let targetTime;
+        let currentStateTitle = "";
+        let currentStateText = "";
+        let targetClass = "";
+
+        if (now < startTimeGame) {
+            // State 1: Before Start (Red Theme)
+            targetTime = startTimeGame;
+            currentStateTitle = 遊戲即將開始 (UPCOMING);
+            currentStateText = "請準備，任務即將解鎖！";
+            targetClass = "state-pending";
+        } else if (now >= startTimeGame && now <= endTimeGame) {
+            targetTime = endTimeGame;
+            const timeLeft = endTimeGame - now;
+
+            if (timeLeft <= fifteenMinutesMs) {
+                // State 4: Final 15 Minutes Return (Warning Red/Orange Theme)
+                currentStateTitle = "請返回營地！ (RETURN SOON)";
+                currentStateText = "比賽即將結束，請立即回程！";
+                targetClass = "state-return";
+            } else if (timeLeft <= thirtyMinutesMs) {
+                // State 3: Final 30 Minutes Urgent (Amber Theme)
+                currentStateTitle = "最後衝刺階段！ (URGENT)";
+                currentStateText = "剩餘時間不多，加緊完成任務！";
+                targetClass = "state-urgent";
+            } else {
+                // State 2: Live / In-Progress (Green Theme)
+                currentStateTitle = "遊戲進行中 (LIVE)";
+                currentStateText = "全力以赴，群體合一！";
+                targetClass = "state-live";
+            }
+        } else {
+            // State 5: Game Ended (Muted Neutral Theme)
+            $("#hours").text("00");
+            $("#minutes").text("00");
+            $("#seconds").text("00");
+            if (statusTitle) statusTitle.innerText = "遊戲已結束！多謝參與！";
+            if (statusMsg) statusMsg.innerText = "感謝您的熱烈支持與參與！";
+            statusCard.removeClass("state-pending state-live state-urgent state-return").addClass("state-ended");
+            return;
+        }
+
+        statusCard.removeClass("state-pending state-live state-urgent state-return state-ended").addClass(targetClass);
+
+        const distance = targetTime - now;
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        $("#hours").text(String(hours).padStart(2, '0'));
+        $("#minutes").text(String(minutes).padStart(2, '0'));
+        $("#seconds").text(String(seconds).padStart(2, '0'));
+        if (statusTitle) statusTitle.innerText = currentStateTitle;
+        if (statusMsg) statusMsg.innerText = currentStateText;
+    }
+
+    updateGameCountdown();
+    setInterval(updateGameCountdown, 1000);
 
     $(".tab-btn").on("click", function() {
         const tabName = $(this).data("tab");

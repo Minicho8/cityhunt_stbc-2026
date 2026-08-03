@@ -9,7 +9,7 @@
   <script crossorigin src="../index.js"></script>
   <link rel="stylesheet" crossorigin href="../style.css">
 </head>
-<body>
+<body class="checkpoint-page">
 
 
     <div id="landingIntro" aria-hidden="true">
@@ -43,7 +43,32 @@
     </div>
   </header>
 
+  <!-- Floating Live Countdown & Game Status Widget -->
+  <div class="status-card state-pending floating-status">
+    <div class="status-header">
+      <span class="pulse-dot"></span>
+      <span class="status-title" id="statusMessage">距離遊戲開始還有 (Starts in):</span>
+    </div>
+    <div class="countdown-container">
+      <div class="time-block">
+        <span id="hours">00</span>
+        <label>Hours</label>
+      </div>
+      <span class="colon">:</span>
+      <div class="time-block">
+        <span id="minutes">00</span>
+        <label>Mins</label>
+      </div>
+      <span class="colon">:</span>
+      <div class="time-block">
+        <span id="seconds">00</span>
+        <label>Secs</label>
+      </div>
+    </div>
+  </div>
+
   <div class="card checkpoint-card">
+    
     <!-- FORM VIEW (Normal state) -->
     <div id="formView">
       <img id="imgId">

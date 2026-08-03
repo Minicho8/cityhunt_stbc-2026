@@ -42,6 +42,30 @@
     </div>
 
     <div class="tab-panel is-active" id="missionPanel" role="tabpanel">
+      <!-- NEW: Live Countdown & Game Status Widget -->
+      <div class="status-card" role="region" aria-label="Game status and countdown">
+        <div class="status-header">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          <span id="statusTitle" class="status-title">Loading Status...</span>
+        </div>
+        <div class="countdown-container" id="countdownContainer">
+          <div class="time-block">
+            <span id="hours">00</span>
+            <label>小時</label>
+          </div>
+          <span class="colon">:</span>
+          <div class="time-block">
+            <span id="minutes">00</span>
+            <label>分鐘</label>
+          </div>
+          <span class="colon">:</span>
+          <div class="time-block">
+            <span id="seconds">00</span>
+            <label>秒</label>
+          </div>
+        </div>
+        <p id="statusMessage" class="status-msg">Connecting to game server...</p>
+      </div>
       <div class="mission-card">
         <p class="mission-label">Mission Board</p>
         <h2>Enter the CityHunt board</h2>
@@ -61,12 +85,15 @@
         <h2>City Hunt 遊戲規則</h2>
         <p>歡迎來到驚險刺激的 City Hunt ！本遊戲將帶領各位走出戶外，結合團隊合作、智慧與實地探索。</p>
         <p>請所有兄弟姐妹詳細閱讀以下規則：</p>
+        <br>
         <h3>一、 遊戲概述</h3>
         <ul>
           <li><strong>遊戲宗旨：</strong>各隊伍須利用官方提供的道具包與專屬 App，在指定區域內穿梭各大景點，齊心協力破解重重謎題、完成各項趣味任務，爭取最高榮譽。</li>
           <li><strong>組隊方式：</strong>採分組競賽制。每組配有一個，各隊成績排名將回到營地後的分享環節後公佈。</li>
           <li><strong>移動方式：</strong>全程以步行為主，並可搭配大眾運輸工具。嚴禁違反道路安</li>
         </ul>
+        <br>
+        <h3>二、 裝備與行前準備</h3>
         <ul>
           <li><strong>實體道具：</strong>每隊將獲得一份謎題包（內含關卡信封、線索道具等）。<h5>注意：在遊戲正式開始前，請勿提前拆開各任務點的任務卡，以免失去游戲樂趣。</h5></li>
           <li><strong>電子設備：</strong>每隊至少須準備一支可上網並安裝官方 App 的智慧型手機。建議出發前確保手機電量充足，並建議攜帶行動電源。</li>
@@ -78,6 +105,14 @@
             </ul>
           </li>
         </ul>
+        <br>
+        <h3>五、 注意事項與安全守則</h3>
+        <ol>
+          <li><strong>安全第一：</strong>戶外尋寶難免行經街道，過馬路時請務必遵守交通號誌、注意來往車輛。切勿邊走邊看手機或盲目奔跑。</li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ol>
         <ul>
           <li>Follow each clue in order and stay with your team.</li>
           <li>Use only the hints provided inside the game and the checkpoint pages.</li>

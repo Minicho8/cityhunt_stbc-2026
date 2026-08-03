@@ -1,0 +1,180 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body.widget-page {
+  background: transparent;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* --- Floating Live Countdown & Game Status Widget Styles --- */
+.status-card {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  padding: 1.05rem 1rem 1rem;
+  display: grid;
+  gap: 0.75rem;
+  text-align: center;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(235, 248, 255, 0.98), rgba(255, 255, 255, 0.96));
+  border: 1px solid rgba(45, 125, 97, 0.24);
+  box-shadow: 0 12px 22px rgba(22, 67, 110, 0.08);
+  transition: all 0.3s ease;
+}
+
+.status-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.status-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #2d7d61;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #2d7d61;
+  box-shadow: 0 0 0 rgba(45, 125, 97, 0.4);
+  animation: livePulse 1.5s infinite;
+}
+
+.countdown-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.time-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(22, 67, 110, 0.06);
+  padding: 0.4rem 0.7rem;
+  border-radius: 10px;
+  min-width: 52px;
+}
+
+.time-block span {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #17324d;
+  line-height: 1.1;
+}
+
+.time-block label {
+  font-size: 0.65rem;
+  color: #50657a;
+  text-transform: uppercase;
+  margin-top: 0.1rem;
+}
+
+.colon {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #17324d;
+  margin-bottom: 1rem;
+}
+
+.status-msg {
+  font-size: 0.9rem;
+  color: #405264;
+  font-weight: 600;
+}
+
+@keyframes livePulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(45, 125, 97, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(45, 125, 97, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(45, 125, 97, 0); }
+}
+
+/* --- Dynamic Status Card Color Themes --- */
+
+/* State 1: Pending / Before Start */
+.status-card.state-pending {
+  background: linear-gradient(135deg, rgba(255, 243, 243, 0.98), rgba(255, 255, 255, 0.96));
+  border: 1px solid rgba(229, 62, 62, 0.3);
+  box-shadow: 0 12px 22px rgba(229, 62, 62, 0.08);
+}
+.status-card.state-pending .status-title { color: #c53030; }
+.status-card.state-pending .pulse-dot { background-color: #e53e3e; animation: none; }
+.status-card.state-pending .time-block { background: rgba(229, 62, 62, 0.06); }
+.status-card.state-pending .time-block span,
+.status-card.state-pending .colon { color: #9b2c2c; }
+
+/* State 2: Live / In-Progress */
+.status-card.state-live {
+  background: linear-gradient(135deg, rgba(238, 255, 235, 0.98), rgba(255, 255, 255, 0.96));
+  border: 1px solid rgba(56, 142, 60, 0.35);
+  box-shadow: 0 12px 22px rgba(46, 125, 50, 0.12);
+}
+.status-card.state-live .status-title { color: #2e7d32; }
+.status-card.state-live .pulse-dot { background-color: #4caf50; animation: livePulse 1s infinite; }
+.status-card.state-live .time-block { background: rgba(56, 142, 60, 0.08); }
+.status-card.state-live .time-block span,
+.status-card.state-live .colon { color: #1b5e20; }
+
+/* State 3: Urgent (Final 30 mins) */
+.status-card.state-urgent {
+  background: linear-gradient(135deg, rgba(255, 251, 230, 0.98), rgba(255, 255, 255, 0.96));
+  border: 1px solid rgba(214, 158, 46, 0.4);
+  box-shadow: 0 12px 22px rgba(214, 158, 46, 0.15);
+}
+.status-card.state-urgent .status-title { color: #b7791f; }
+.status-card.state-urgent .pulse-dot { background-color: #d69e2e; animation: urgentPulse 0.6s infinite; }
+.status-card.state-urgent .time-block { background: rgba(214, 158, 46, 0.08); }
+.status-card.state-urgent .time-block span,
+.status-card.state-urgent .colon { color: #975a16; }
+
+@keyframes urgentPulse {
+  0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(214, 158, 46, 0.8); }
+  70% { transform: scale(1.1); box-shadow: 0 0 0 8px rgba(214, 158, 46, 0); }
+  100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(214, 158, 46, 0); }
+}
+
+/* State 4: Return Phase (Final 15 mins) */
+.status-card.state-return {
+  background: linear-gradient(135deg, rgba(255, 243, 243, 0.98), rgba(255, 255, 255, 0.96));
+  border: 1px solid rgba(229, 62, 62, 0.4);
+  box-shadow: 0 12px 22px rgba(229, 62, 62, 0.15);
+}
+.status-card.state-return .status-title { color: #c53030; }
+.status-card.state-return .pulse-dot { background-color: #e53e3e; animation: returnPulse 0.6s infinite; }
+.status-card.state-return .time-block { background: rgba(229, 62, 62, 0.08); }
+.status-card.state-return .time-block span,
+.status-card.state-return .colon { color: #9b2c2c; }
+
+@keyframes returnPulse {
+  0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(229, 62, 62, 0.8); }
+  70% { transform: scale(1.1); box-shadow: 0 0 0 8px rgba(229, 62, 62, 0); }
+  100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(229, 62, 62, 0); }
+}
+
+/* State 5: Ended */
+.status-card.state-ended {
+  background: linear-gradient(135deg, rgba(240, 242, 245, 0.98), rgba(255, 255, 255, 0.96));
+  border: 1px solid rgba(113, 128, 150, 0.25);
+  box-shadow: 0 12px 22px rgba(113, 128, 150, 0.08);
+}
+.status-card.state-ended .status-title { color: #4a5568; }
+.status-card.state-ended .pulse-dot { background-color: #a0aec0; animation: none; }
+.status-card.state-ended .time-block { background: rgba(113, 128, 150, 0.08); }
+.status-card.state-ended .time-block span,
+.status-card.state-ended .colon { color: #2d3748; }
