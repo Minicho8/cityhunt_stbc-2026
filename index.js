@@ -53,9 +53,9 @@ const pageData = {
 
 
     "202608chk10": {
-    "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=381436638",
+    "2027-6": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=381436638",
     img: "../img/IMG_0080.jpg",
-    context: "請找出此處飲水機下次更換UV紫外光燈的日期(格式:yyyy-mm)"
+    context: "請找出此處飲水機下次更換UV紫外光燈的日期(格式:yyyy-m)"
     },
     "202608chk11": {
     "3": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=381436645",
