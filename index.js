@@ -1,17 +1,17 @@
 // --- MAP IDs TO PASSWORDS & TARGET URLs ---
 const pageData = {
     "test": {
-    "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=380046174",
+    "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=381436565",
     img: "../img/img1.jpeg",
-    context: "a test on the context"
+    context: "請找出此處的地產公司的電話號碼(格式:XXXXXXXX)"
     },
     "202608chk1": {
-    "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=380046174",
+    "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=381436580",
     img: "../img/img1.jpeg",
     context: "a test on the context"
     },
     "202608chk2": {
-    "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=380046174",
+    "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=381436593",
     img: "../img/img1.jpeg",
     context: "a test on the context"
     },
@@ -43,23 +43,24 @@ const pageData = {
     "202608chk8": {
     "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=380046174",
     img: "../img/checkpoint5.png",
-    context: "請找出此處的垃圾桶上的數字"
+    context: "請找出此處飲水機上次更換濾芯的時間(格式:yyyy/mm/dd)"
     },
     "202608chk9": {
     "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=380046174",
     img: "../img/checkpoint5.png",
     context: "請找出此處的垃圾桶上的數字"
     },
+
+
     "202608chk10": {
-    "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=380046174",
-    img: "../img/checkpoint5.png",
-    context: "請找出此處的垃圾桶上的數字"
+    "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=381436638",
+    img: "../img/IMG_0080.jpg",
+    context: "請找出此處飲水機下次更換UV紫外光燈的日期(格式:yyyy-mm)"
     },
-    "202608chk2": {
-    "secret123": "",
-    },
-    "202608chk3": {
-    "clientpass": "https://example.com/client-a-dashboard"
+    "202608chk11": {
+    "3": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=381436645",
+    img: "../img/IMG_0086.jpg",
+    context: "請找出公園入面有幾多個垃圾桶(格式:X)"
     }
 };
 
