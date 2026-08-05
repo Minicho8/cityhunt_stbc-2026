@@ -1,7 +1,7 @@
 // --- MAP IDs TO PASSWORDS & TARGET URLs ---
 const pageData = {
     "test": {
-    "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=381436565",
+    "34": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=381436565",
     img: "../img/img1.jpeg",
     context: "請找出此處的地產公司的電話號碼(格式:XXXXXXXX)"
     },
