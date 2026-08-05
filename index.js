@@ -18,40 +18,38 @@ const pageData = {
     "202608chk3": {
     "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=380046174",
     img: "../img/img1.jpeg",
-    context: "a test on the context"
+    context: ""
     },
     "202608chk4": {
-    "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=380046174",
-    img: "../img/img1.jpeg",
-    context: "a test on the context"
+    "M04": "",
+    img: "../img/i5990108993_56a862a99fb97a867116ff83416b4d80_IMG_0161.jpg",
+    context: "請找出圖中的石製水箱上的編號"
     },
     "202608chk5": {
-    "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=380046174",
-    img: "../img/checkpoint5.png",
+    "34": "",
+    img: "../img/img1.png",
     context: "請找出此處的垃圾桶上的數字"
     },
     "202608chk6": {
-    "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=380046174",
-    img: "../img/checkpoint5.png",
-    context: "請找出此處的垃圾桶上的數字"
+    "T424": "",
+    img: "../img/5990108993_4e8a52ca7213315a3ba3b5d78000a1f9_IMG_0158.jpg",
+    context: "請找出耀安邨護衛員室左邊的樹木編號"
     },
     "202608chk7": {
-    "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=380046174",
-    img: "../img/checkpoint5.png",
-    context: "請找出此處的垃圾桶上的數字"
+    "NS285A": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=381436617",
+    img: "../img/IMG_0121.jpg",
+    context: "請找出A出口升降機口右上角的黃色反光板上的編號"
     },
     "202608chk8": {
-    "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=380046174",
-    img: "../img/checkpoint5.png",
-    context: "請找出此處飲水機上次更換濾芯的時間(格式:yyyy/mm/dd)"
+    "05/02/2026": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=381436619",
+    img: "../img/5990108993_2de96c88dc9091073ce72a81d1f30a69_IMG_0071.jpg",
+    context: "請找出此處飲水機上次更換濾芯的時間(格式:dd/mm/yyyy)"
     },
     "202608chk9": {
-    "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=380046174",
-    img: "../img/checkpoint5.png",
-    context: "請找出此處的垃圾桶上的數字"
+    "BE3893": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=381436624",
+    img: "../img/IMG_0097.jpg",
+    context: "請找出此處圖中燈柱上的編號"
     },
-
-
     "202608chk10": {
     "2027-6": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=381436638",
     img: "../img/IMG_0080.jpg",
