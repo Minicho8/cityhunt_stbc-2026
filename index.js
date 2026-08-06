@@ -24,12 +24,12 @@ const pageData = {
 
     "202608chk4": {
     "M04": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=381436602",
-    img: "../img/i5990108993_56a862a99fb97a867116ff83416b4d80_IMG_0161.jpg",
+    img: "../img/5990108993_56a862a99fb97a867116ff83416b4d80_IMG_0161.jpg",
     context: "請找出圖中的石製水箱上的編號"
     },
     "202608chk5": {
     "34": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=381436610",
-    img: "../img/img1.png",
+    img: "../img/img1.jpeg",
     context: "請找出此處的垃圾桶上的數字"
     },
     "202608chk6": {
