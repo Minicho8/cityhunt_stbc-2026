@@ -1,6 +1,6 @@
 // Configure your game times here (ISO strings or timestamps)
-const GAME_START_TIME = new Date("2026-08-07T17:15:00").getTime();
-const GAME_END_TIME   = new Date("2026-08-04T20:30:00").getTime();
+const GAME_START_TIME = new Date("2026-08-07T17:45:00").getTime();
+const GAME_END_TIME   = new Date("2026-08-07T21:00:00").getTime();
 
 const statusCard  = document.getElementById('statusCard');
 const statusTitle = document.getElementById('statusTitle');

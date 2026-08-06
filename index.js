@@ -1,27 +1,15 @@
 // --- MAP IDs TO PASSWORDS & TARGET URLs ---
 const pageData = {
     "test": {
-    "34": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=381436565",
-    img: "../img/img1.jpeg",
-    context: "請找出此處的地產公司的電話號碼(格式:XXXXXXXX)"
-    },
-    "202608chk1": {
-    "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=381436580",
-    img: "../img/img1.jpeg",
-    context: "a test on the context"
+    "6": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=381436565",
+    img: "../img/pikmincheckpoint.png",
+    context: "請找出出面ppt上有幾多隻皮卡敏Pikmin?"
     },
     "202608chk2": {
-    "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=381436593",
-    img: "../img/img1.jpeg",
-    context: "a test on the context"
+    "PP11547": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=381436593",
+    img: "../img/5990108993_c2d32c96732ad8dd9a1f4b16fa81555e_IMG_0193.jpg",
+    context: "請找出圖中電話亭的電話機編號"
     },
-    "202608chk3": {
-    "": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=380046174",
-    img: "../img/img1.jpeg",
-    context: ""
-    },
-
-
     "202608chk4": {
     "M04": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=381436602",
     img: "../img/5990108993_56a862a99fb97a867116ff83416b4d80_IMG_0161.jpg",
@@ -273,7 +261,7 @@ $(document).ready(function() {
 
     // --- Live Countdown & Game Status Timer ---
     
-    const startTimeGame = new Date("2026-08-07T17:30:00").getTime();
+    const startTimeGame = new Date("2026-08-05T17:30:00").getTime();
     const endTimeGame = new Date("2026-08-07T21:00:00").getTime();
 
 
