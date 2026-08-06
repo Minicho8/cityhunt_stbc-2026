@@ -16,22 +16,24 @@ const pageData = {
     context: "a test on the context"
     },
     "202608chk3": {
-    "26432866": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=380046174",
+    "": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=380046174",
     img: "../img/img1.jpeg",
     context: ""
     },
+
+
     "202608chk4": {
-    "M04": "",
+    "M04": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=381436602",
     img: "../img/i5990108993_56a862a99fb97a867116ff83416b4d80_IMG_0161.jpg",
     context: "請找出圖中的石製水箱上的編號"
     },
     "202608chk5": {
-    "34": "",
+    "34": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=381436610",
     img: "../img/img1.png",
     context: "請找出此處的垃圾桶上的數字"
     },
     "202608chk6": {
-    "T424": "",
+    "T424": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=381436615",
     img: "../img/5990108993_4e8a52ca7213315a3ba3b5d78000a1f9_IMG_0158.jpg",
     context: "請找出耀安邨護衛員室左邊的樹木編號"
     },
@@ -58,7 +60,7 @@ const pageData = {
     "202608chk11": {
     "3": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=381436645",
     img: "../img/IMG_0086.jpg",
-    context: "請找出公園入面有幾多個垃圾桶(格式:X)"
+    context: "請找出公園入面有幾多個垃圾桶"
     }
 };
 
@@ -271,8 +273,8 @@ $(document).ready(function() {
 
     // --- Live Countdown & Game Status Timer ---
     
-    const startTimeGame = new Date("2026-08-04T16:00:00").getTime();
-    const endTimeGame = new Date("2026-08-07T20:30:00").getTime();
+    const startTimeGame = new Date("2026-08-07T17:30:00").getTime();
+    const endTimeGame = new Date("2026-08-07T21:00:00").getTime();
 
 
     const statusCard  = $(".status-card");
@@ -353,32 +355,6 @@ $(document).ready(function() {
     updateGameCountdown();
     setInterval(updateGameCountdown, 1000);
 
-    // --- Emergency Card Utility Drawer Toggle ---
-    const $utilityToggleBtn = $("#utilityToggleBtn");
-    const $utilityDrawer = $("#utilityDrawer");
-    const $utilityCloseBtn = $("#utilityCloseBtn");
-
-    $utilityToggleBtn.on("click", function(e) {
-        e.stopPropagation();
-        const isOpen = $utilityDrawer.hasClass("is-open");
-        if (isOpen) {
-            $utilityDrawer.removeClass("is-open").attr("aria-hidden", "true");
-        } else {
-            $utilityDrawer.addClass("is-open").attr("aria-hidden", "false");
-        }
-    });
-
-    $utilityCloseBtn.on("click", function() {
-        $utilityDrawer.removeClass("is-open").attr("aria-hidden", "true");
-    });
-
-    // Close drawer when clicking outside the emergency card
-    $(document).on("click", function(e) {
-        if (!$(e.target).closest(".emergency-card").length) {
-            $utilityDrawer.removeClass("is-open").attr("aria-hidden", "true");
-        }
-    });
-
     $(".tab-btn").on("click", function() {
         const tabName = $(this).data("tab");
 
@@ -416,7 +392,7 @@ $(document).ready(function() {
 
     const enteredPassword = $("#passwordInput").val().trim();
     
-    if (pageData[currentId] && pageData[currentId][enteredPassword]) {
+    if (pageData[currentId] && pageData[currentId][enteredPassword] && enteredPassword !== "img" && enteredPassword !== "context") {
         $("#errorMessage").hide();
         const targetUrl = pageData[currentId][enteredPassword];
         window.location.href = targetUrl;
