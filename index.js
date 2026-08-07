@@ -3,7 +3,7 @@ const pageData = {
     "test": {
     "6": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=381436565",
     img: "../img/pikmincheckpoint.png",
-    context: "請找出出面ppt上有幾多隻皮卡敏Pikmin?"
+    context: "請找出出面ppt上有幾多隻皮卡敏?"
     },
     "202608chk2": {
     "PP11547": "https://padlet.com/joshuatam/submission-request/m9LGXq6G8r56vaKY?section=381436593",
@@ -261,7 +261,7 @@ $(document).ready(function() {
 
     // --- Live Countdown & Game Status Timer ---
     
-    const startTimeGame = new Date("2026-08-05T17:30:00").getTime();
+    const startTimeGame = new Date("2026-08-07T17:45:00").getTime();
     const endTimeGame = new Date("2026-08-07T21:00:00").getTime();
 
 
@@ -373,6 +373,9 @@ $(document).ready(function() {
     } else {
     $("#imgId").attr('src', pageData[currentId].img);
     $("#contextId").text(pageData[currentId].context);
+    if (currentId == "test"){
+        $(".backBtn").hide();
+    }
     }
     // 3. Handle Form Submission
     $("#passwordForm").on("submit", function(e) {
